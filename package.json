@@ -1,0 +1,14 @@
+{
+  "name": "floom",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "lerna run start --stream",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
