@@ -10,6 +10,4 @@ app.use(bodyParser());
 app.use(flowersRouter.routes());
 app.use(flowersRouter.allowedMethods());
 
-app.on('error', console.error);
-
 export default app;
