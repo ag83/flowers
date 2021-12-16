@@ -1,4 +1,4 @@
-Great you’re looking to get involved with Floom. Push your solution to private Git repository and add Ash as a collaborator when you’re ready. Github handle: `ahnunn` `bradlocking` `lukepearce` `richieteo`
+Great you’re looking to get involved with flowers. Push your solution to private Git repository and add Ash as a collaborator when you’re ready. Github handle: `ahnunn` `bradlocking` `lukepearce` `richieteo`
 
 ## Brief
 
@@ -58,7 +58,7 @@ Each flower has some tags that describe it, such as it's color and style. We can
 
 When a Flowers stock level reaches below the threshold of `10` it enters a `low_stock` state, at this point the system should notify a third party stock provider to order new stock
 
-There’s no need to implement the notification delivery itself. Call a pretend endpoint `floom.test/api/send_stock_notification` with parameters `floristId`, `flowerId` and `stockRequired` when you wish to notify the third party of a requirement for new stock.
+There’s no need to implement the notification delivery itself. Call a pretend endpoint `flowers.test/api/send_stock_notification` with parameters `floristId`, `flowerId` and `stockRequired` when you wish to notify the third party of a requirement for new stock.
 
 once this notification is sent we can safely say a corresponding **Stock refill** is created in the `placed` status
 
@@ -89,10 +89,10 @@ The single page must be built in React. Beyond that you're open to use any frame
 
 The brief is intentionally open. We don’t wish for you to spend more than two hours on the challenge, elaborate on any area of the challenge you wish, so long as the project has the following features:
 
-- An endpoint that accepts the stock refiill updates
-- An endpoint that accepts new flowers
-- An endpoint that serves all flowers information
-- An endpoint that serves a flowers current status and stock provided with the orders ID.
-- An endpoint that update a flowers stock
+ An endpoint that accepts the stock refiill updates
+ An endpoint that accepts new flowers
+ An endpoint that serves all flowers information
+ An endpoint that serves a flowers current status and stock provided with the orders ID.
+ An endpoint that update a flowers stock
 - a Flower list and edit UI page
-- The (pretend) endpoint `floom.test/api/send_stock_notification` is called when you would like to trigger a notification,
+- The (pretend) endpoint `flowers.test/api/send_stock_notification` is called when you would like to trigger a notification,

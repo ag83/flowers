@@ -7,7 +7,6 @@ class FlowersDataBase {
         this.items = [];
     }
 
-
     public saveFlower(flowerRequest: FlowerInfoCreateRequest): Promise<FlowerInfo> {
         return new Promise((resolve, reject) => {
             const newFlower: FlowerInfo = {

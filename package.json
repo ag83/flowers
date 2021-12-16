@@ -1,9 +1,10 @@
 {
-  "name": "floom",
+  "name": "flowers",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "lerna run start --stream",
+    "kill-ports": "npx kill-port --port 3001,3000",
+    "start": "npm run kill-ports && lerna run start --parallel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
