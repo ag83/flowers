@@ -5,10 +5,14 @@ import { Typography } from 'antd';
 import './App.css';
 
 import { AppRoutes } from './Router';
+import { useFlowerEvents } from './hooks/use-events';
 
 const App: FC = () => {
+
+    useFlowerEvents();
     const { Header, Content } = Layout;
     const { Title } = Typography;
+
     return (
         <Layout style={{ height: '100vh' }}>
             <Header>

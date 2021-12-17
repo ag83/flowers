@@ -26,7 +26,6 @@ class FlowersDataBase {
 
     public getFlowerById(id: number): Promise<FlowerInfo> {
         return new Promise((resolve, reject) => {
-            console.log(id, this.items)
             const flower = this.items.find((item) => item.flowerId === id);
             if (flower) {
                 resolve(flower);

@@ -16,9 +16,8 @@ const Flowers: FC = () => {
 
 const FlowersSuspense: FC = () => {
     const flowers = useRecoilValue(allFlowers);
-
     return (
-        <Row  justify="center" gutter={16}>
+        <Row  justify="center">
             {
                 flowers.map(item => (
                     <Col key={item.flowerId} xs={20} sm={12} md={8} lg={6} style={{ padding: '2rem' }}>
@@ -35,7 +34,6 @@ const FlowersSuspense: FC = () => {
                             </Card>
                         </Link>
                     </Col>
-
                     )
                 )
             }

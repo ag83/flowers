@@ -3,6 +3,7 @@ import Router from 'koa-router';
 import HttpStatus from 'http-status-codes';
 
 import flowerService from './flower-service';
+import { emitFlowerEvent } from './flower-stream';
 
 const routerOpts: Router.IRouterOptions = {
     prefix: '/flowers',
@@ -11,7 +12,7 @@ const routerOpts: Router.IRouterOptions = {
 
 const flowersRouter: Router = new Router(routerOpts);
 
-flowersRouter.get('/', async (ctx:Koa.Context, next) => {
+flowersRouter.get('/', async (ctx:Koa.Context, next: Koa.Next) => {
     try {
         const flowers = await flowerService.getFlowers();
         ctx.body = flowers;
@@ -23,7 +24,7 @@ flowersRouter.get('/', async (ctx:Koa.Context, next) => {
     await next();
 });
 
-flowersRouter.post('/', async (ctx:Koa.Context, next) => {
+flowersRouter.post('/', async (ctx:Koa.Context, next: Koa.Next) => {
     const flowerRequest = ctx.request.body as FlowerInfoCreateRequest;
     if (!flowerService.validateFlowerRequest(flowerRequest)) {
         ctx.body = {message: 'wrong input format'};
@@ -40,7 +41,7 @@ flowersRouter.post('/', async (ctx:Koa.Context, next) => {
     await next();
 });
 
-flowersRouter.get('/:id/status', async (ctx:Koa.Context, next) => {
+flowersRouter.get('/:id/status', async (ctx:Koa.Context, next: Koa.Next) => {
     const id = parseInt(ctx.params.id);
     try {
         const flowerStatus = await flowerService.getFlowerStatus(id);
@@ -53,7 +54,7 @@ flowersRouter.get('/:id/status', async (ctx:Koa.Context, next) => {
     await next();
 });
 
-flowersRouter.patch('/:id/status', async (ctx:Koa.Context, next) => {
+flowersRouter.patch('/:id/status', async (ctx:Koa.Context, next: Koa.Next) => {
     const id = parseInt(ctx.params.id);
     const update = ctx.request.body as FlowerStatusUpdate;
     if (!flowerService.validateFlowerStatus(update)) {
@@ -71,7 +72,7 @@ flowersRouter.patch('/:id/status', async (ctx:Koa.Context, next) => {
     await next();
 });
 
-flowersRouter.patch('/status', async (ctx:Koa.Context, next) => {
+flowersRouter.patch('/status', async (ctx:Koa.Context, next: Koa.Next) => {
     const update = ctx.request.body as DeliveryUpdate;
     if (!flowerService.validateFlowerUpdate(update)) {
         ctx.body = {message: 'wrong input format'};
@@ -79,6 +80,12 @@ flowersRouter.patch('/status', async (ctx:Koa.Context, next) => {
     }
     try {
         const updatedFlower = await flowerService.updateFlowerStatus(update);
+        const flowerUpdateEvent = {
+            flowerId: updatedFlower.flowerId,
+            stockLevel: updatedFlower.stockLevel,
+            status: updatedFlower.status
+        }
+        emitFlowerEvent(flowerUpdateEvent);
         ctx.body = updatedFlower;
     } catch(err) {
         console.error(err)

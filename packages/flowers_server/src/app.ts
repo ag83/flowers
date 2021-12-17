@@ -5,6 +5,7 @@ import mount from "koa-mount";
 import path from "path";
 
 import flowersRouter from './flowers/flower-routes';
+import { flowerSSE } from './flowers/flower-stream';
 
 const app = new Koa();
 
@@ -19,6 +20,7 @@ app.use(async (ctx, next) => {
 });
 
 app.use(bodyParser());
+app.use(flowerSSE)
 app.use(flowersRouter.routes());
 app.use(flowersRouter.allowedMethods());
 

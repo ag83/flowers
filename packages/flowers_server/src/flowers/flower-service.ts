@@ -123,13 +123,14 @@ class FlowerService {
     public async updateFlowerStatus(update: DeliveryUpdate): Promise<FlowerInfo> {
         let flower = await flowersDataBase.getFlowerById(update.flowerId);
         if (update.status === 'delivered') {
-            const newAmount = flower.stockLevel - update.amount;
+            let newAmount = flower.stockLevel - update.amount;
             let newStatus = flower.status;
             if (newAmount <= 10) {
                 newStatus = "low_stock";
             }
             if (newAmount <= 0) {
                 newStatus = "out_of_stock";
+                newAmount = 0;
             }
             const updatedFlower = {
                 ...flower,
