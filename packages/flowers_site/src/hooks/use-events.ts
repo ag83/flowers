@@ -10,7 +10,6 @@ export const useFlowerEvents = () => {
 
     useEffect(() => {
         const source = new EventSource(`${SERVER_URL}/flowers/updates`);
-        console.log('subscribe');
         source.onopen = () => console.log("Connected");
         source.onerror = console.error;
         source.onmessage = event => {
@@ -33,7 +32,6 @@ export const useFlowerEvents = () => {
         }
 
         return () => {
-            console.log('unsubscribe');
             source.close();
         };
 

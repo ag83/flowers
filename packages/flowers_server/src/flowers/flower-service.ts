@@ -1,6 +1,8 @@
 import Ajv, {ValidateFunction} from "ajv";
+import axios from 'axios';
 
 import flowersDataBase from "./flower-database";
+import { PROVIDER_URL } from "../constants";
 
 class FlowerService {
 
@@ -123,7 +125,7 @@ class FlowerService {
     public async updateFlowerStatus(update: DeliveryUpdate): Promise<FlowerInfo> {
         let flower = await flowersDataBase.getFlowerById(update.flowerId);
         if (update.status === 'delivered') {
-            let newAmount = flower.stockLevel - update.amount;
+            let newAmount = flower.stockLevel + update.amount;
             let newStatus = flower.status;
             if (newAmount <= 10) {
                 newStatus = "low_stock";
@@ -147,17 +149,28 @@ class FlowerService {
         let flower = await flowersDataBase.getFlowerById(id);
         let newStatus = flower.status;
         if (update.stockLevel <= 10) {
+            this.notifyProvider(flower.flowerId, flower.floristId, 10); // notify provider
             newStatus = "low_stock";
         }
         if (update.stockLevel <= 0) {
+            this.notifyProvider(flower.flowerId, flower.floristId, 10);
             newStatus = "out_of_stock";
         }
         const updatedFlower = {
             ...flower,
-            stockLevel: update.stockLevel,
+            stockLevel: update.stockLevel >= 0 ? update.stockLevel : 0,
             status: newStatus,
         };
         return await flowersDataBase.putFlower(updatedFlower);
+    }
+
+    private notifyProvider(flowerId: number, floristId: number, stock: number) {
+        const request: FlowerStockRequest = {
+            floristId: flowerId,
+            flowerId: floristId,
+            stockRequired: stock,
+        };
+        axios.post(PROVIDER_URL, request)
     }
 
 

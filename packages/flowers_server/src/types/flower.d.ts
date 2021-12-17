@@ -42,3 +42,9 @@ declare interface FlowerStatusEvent {
 declare interface FlowerStatusUpdate {
     stockLevel: number,
 }
+
+declare interface FlowerStockRequest {
+    floristId: number,
+    flowerId: number,
+    stockRequired: number,
+}

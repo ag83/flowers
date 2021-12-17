@@ -1,0 +1,1 @@
+export const PROVIDER_URL = `flowers.test/api/send_stock_notification`
