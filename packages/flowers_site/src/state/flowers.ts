@@ -1,16 +1,38 @@
-import { selector,  RecoilValueReadOnly } from 'recoil';
-import axios from 'axios'
+import { atom, selector,  selectorFamily, DefaultValue } from 'recoil';
 
-import { SERVER_URL } from '../constants';
+import { getFlowers } from '../flowers-api';
 
-export const fetchAllFlowers: RecoilValueReadOnly<FlowerInfo[]> = selector({
+export const fetchAllFlowers = selector<FlowerInfo[]>({
     key: 'allFlowersSelector',
-    get: async ({ get }) => {
-        try{
-            const response = await axios.get(`${SERVER_URL}/flowers`);
-            return response.data as FlowerInfo[];
-        }catch(error){
-            throw error;
-        }
+    get: async ({ get}) => {
+        return await getFlowers();
     }
+});
+
+export const allFlowers = atom<FlowerInfo[]>({
+    key: 'allFlowers',
+    default: fetchAllFlowers,
+});
+
+
+export const selectFlower = selectorFamily<FlowerInfo | null, number>({
+    key: 'flowerSelector',
+    get: (id: number) => async ({get}) => {
+        const all = await get(allFlowers);
+        const foundFlower = all.find((item: FlowerInfo) => item.flowerId === id);
+        return foundFlower ? foundFlower : null;
+    },
+    set: (id: number) => ({set, get}, newValue) => {
+        if (newValue !== null && !(newValue instanceof DefaultValue) && newValue.flowerId === id) {
+            const all = get(allFlowers);
+            const newAll = all.map((item) => {
+                if (item.flowerId === id) {
+                    return newValue;
+                }
+                return item;
+            })
+            set(allFlowers, newAll);
+        }
+    },
+
 });

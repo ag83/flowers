@@ -8,7 +8,7 @@ export const AppRoutes: FC = () => {
 	return (
         <Switch>
             <Route exact path="/" component={Flowers} />
-            <Route path="/:flower" component={Flower} />
+            <Route path="/:flowerId" component={Flower} />
             <Route path='*'>
                 <Redirect to="/" />
             </Route>

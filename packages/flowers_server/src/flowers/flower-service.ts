@@ -69,9 +69,8 @@ class FlowerService {
             type: "object",
             properties: {
                 stockLevel: {type: "integer"},
-                status: {enum: ["in_stock", "low_stock", "out_of_stock"]},
             },
-            required: ["stockLevel", "status"],
+            required: ["stockLevel"],
             additionalProperties: false
         };
 
@@ -95,7 +94,7 @@ class FlowerService {
         }
     }
 
-    public validateFlowerStatus(update: FlowerStatus) {
+    public validateFlowerStatus(update: FlowerStatusUpdate) {
         if (this.statusValidator(update)) {
             return true;
         } else {
@@ -143,12 +142,19 @@ class FlowerService {
         } 
     }
 
-    public async patchFlowerStatus(id: number, update: FlowerStatus) {
+    public async patchFlowerStatus(id: number, update: FlowerStatusUpdate) {
         let flower = await flowersDataBase.getFlowerById(id);
+        let newStatus = flower.status;
+        if (update.stockLevel <= 10) {
+            newStatus = "low_stock";
+        }
+        if (update.stockLevel <= 0) {
+            newStatus = "out_of_stock";
+        }
         const updatedFlower = {
             ...flower,
-            status: update.status,
-            stockLevel: update.stockLevel
+            stockLevel: update.stockLevel,
+            status: newStatus,
         };
         return await flowersDataBase.putFlower(updatedFlower);
     }
