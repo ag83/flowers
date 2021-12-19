@@ -5,7 +5,7 @@ packages/flowers_site - React frontent development server on localhost:3000
 ### Dependency install
 
 npm i
-lerna bootstrap
+npx lerna bootstrap --hoist
 
 ### Start project
 npm run start

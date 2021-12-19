@@ -1,0 +1,21 @@
+{
+  "name": "@flowers/common",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "lib/common.js",
+  "directories": {
+    "constants": "constants",
+    "types": "types"
+  },
+  "files": [
+    "constants"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+  
+  }
+}

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { SERVER_URL } from '../constants';
+import { FlowerStatusEvent } from '@flowers/common/types/flower';
+import { SERVER_URL } from '@flowers/common/constants/constants';
 import { allFlowers } from '../state/flowers';
 
 export const useFlowerEvents = () => {

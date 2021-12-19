@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { SERVER_URL } from './constants';
+import { FlowerInfo, FlowerStatusUpdate } from '@flowers/common/types/flower';
+import { SERVER_URL } from '@flowers/common/constants/constants';
 
 const instance = axios.create({
     baseURL:  SERVER_URL,

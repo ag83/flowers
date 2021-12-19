@@ -1,10 +1,10 @@
 import app from './app';
 import { autoFill } from './flowers/utilities';
+import { SERVER_PORT } from "@flowers/common/constants/constants";
 
-const port = process.env.PORT || 3001;
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+app.listen(SERVER_PORT, () => {
+    console.log(`Listening on port ${SERVER_PORT}`);
     autoFill(); 
 });
 

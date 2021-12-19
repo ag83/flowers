@@ -1,6 +1,7 @@
 import { atom, selector,  selectorFamily, DefaultValue } from 'recoil';
 
 import { getFlowers } from '../flowers-api';
+import { FlowerInfo } from '@flowers/common/types/flower';
 
 export const fetchAllFlowers = selector<FlowerInfo[]>({
     key: 'allFlowersSelector',

@@ -1,4 +1,4 @@
-declare interface FlowerInfo {
+export interface FlowerInfo {
     flowerId: number,
     floristId: number,
     stockLevel: number,
@@ -8,9 +8,9 @@ declare interface FlowerInfo {
     status: FlowerStockStatus
 }
 
-type FlowerStockStatus = "in_stock" | "low_stock" | "out_of_stock";
+export type FlowerStockStatus = "in_stock" | "low_stock" | "out_of_stock";
 
-declare interface DeliveryUpdate {
+export interface DeliveryUpdate {
     flowerId: number,
     amount: number,
     coordinates: [number, number],
@@ -18,9 +18,9 @@ declare interface DeliveryUpdate {
     status: FlowerDeliveryStatus
 }
 
-type FlowerDeliveryStatus = `placed` | `en_route` | `delivered` | `unsuccessful`;
+export type FlowerDeliveryStatus = `placed` | `en_route` | `delivered` | `unsuccessful`;
 
-declare interface FlowerInfoCreateRequest {
+export interface FlowerInfoCreateRequest {
     floristId: number,
     stockLevel: number,
     tags: string[],
@@ -29,21 +29,21 @@ declare interface FlowerInfoCreateRequest {
     status: FlowerStockStatus
 }
 
-declare interface FlowerStatus {
+export interface FlowerStatus {
     stockLevel: number,
     status: FlowerStockStatus
 }
-declare interface FlowerStatusEvent {
+export interface FlowerStatusEvent {
     flowerId: number,
     stockLevel: number,
     status: FlowerStockStatus
 }
 
-declare interface FlowerStatusUpdate {
+export interface FlowerStatusUpdate {
     stockLevel: number,
 }
 
-declare interface FlowerStockRequest {
+export interface FlowerStockRequest {
     floristId: number,
     flowerId: number,
     stockRequired: number,

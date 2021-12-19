@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from 'recoil';
 import { Carousel, Image, Tag, Divider, Row, Col, InputNumber, Button, Space } from 'antd';
 
-import { SERVER_URL } from '../constants';
+import { FlowerInfo } from '@flowers/common/types/flower';
+import { SERVER_URL } from '@flowers/common/constants/constants';
 import { selectFlower } from '../state/flowers';
 import { changeFlowerStock } from '../flowers-api';
 

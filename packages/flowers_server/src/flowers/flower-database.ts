@@ -1,3 +1,4 @@
+import { FlowerInfo, FlowerInfoCreateRequest } from '@flowers/common/types/flower';
 
 class FlowersDataBase {
 

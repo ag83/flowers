@@ -1,4 +1,5 @@
 import flowersDataBase from "./flower-database";
+import { FlowerInfoCreateRequest } from '@flowers/common/types/flower';
 
 export function autoFill() {
     Promise.all(data.map((item) => flowersDataBase.saveFlower(item)))

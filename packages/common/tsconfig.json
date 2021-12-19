@@ -1,8 +1,6 @@
 {
-    "ts-node": {  "files": true },
-    "composite": true,
-    "declaration": true,
     "compilerOptions": {
+      "composite": true,
       "target": "es6",
       "module": "commonjs",
       "outDir": "dist",
@@ -11,9 +9,5 @@
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", ".vscode"],
-    "references": [
-      { "path": "../common" }
-    ],
+    "include": ["types"],
 }

@@ -2,6 +2,8 @@ import Koa from 'koa';
 import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 
+import { FlowerStatusEvent } from '@flowers/common/types/flower';
+
 const events = new EventEmitter();
 events.setMaxListeners(0);
 

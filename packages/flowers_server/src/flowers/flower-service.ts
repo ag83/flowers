@@ -2,7 +2,8 @@ import Ajv, {ValidateFunction} from "ajv";
 import axios from 'axios';
 
 import flowersDataBase from "./flower-database";
-import { PROVIDER_URL } from "../constants";
+import { PROVIDER_URL } from "@flowers/common/constants/constants";
+import { FlowerInfo, DeliveryUpdate, FlowerStatusUpdate, FlowerStatus, FlowerInfoCreateRequest, FlowerStockRequest } from '@flowers/common/types/flower';
 
 class FlowerService {
 

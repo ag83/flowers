@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { Card, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { SERVER_URL } from '../constants';
+import { SERVER_URL } from '@flowers/common/constants/constants';
 import { allFlowers } from '../state/flowers';
 
 const Flowers: FC = () => {
