@@ -68,8 +68,14 @@ const FlowerSuspense: FC = () => {
                 <Divider orientation="left">Change Stock Level</Divider>
                 <div>
                     <Space>
-                        <InputNumber min={0} max={100000} value={stockValue} onChange={onStockChange} />
+                        <InputNumber
+                            className="fl-stock-input"
+                            min={0}
+                            max={100000}
+                            value={stockValue}
+                            onChange={onStockChange} />
                         <Button
+                            className="fl-stock-submit"
                             type="primary"
                             onClick={onStockSave}
                         >

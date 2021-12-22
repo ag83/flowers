@@ -1,0 +1,13 @@
+{
+    "flowerId":1,
+    "amount":2,
+    "coordinates":[
+      51.7014,
+      0.1619
+    ],
+    "deliveryLocation":[
+      51.7014,
+      0.1619
+    ],
+    "status":"delivered"
+}

@@ -1,0 +1,14 @@
+{
+  "floristId": 123,
+  "stockLevel": 21,
+  "tags": [
+      "red",
+      "romance"
+    ],
+  "image_urls": [
+    "images/orange",
+    "images/orange"
+  ],
+  "storageLocation": [51.7014, 0.1619],
+  "status": "in_stock"
+}

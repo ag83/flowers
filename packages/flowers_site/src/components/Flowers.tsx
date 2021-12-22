@@ -17,19 +17,20 @@ const Flowers: FC = () => {
 const FlowersSuspense: FC = () => {
     const flowers = useRecoilValue(allFlowers);
     return (
-        <Row  justify="center">
+        <Row  justify="center" className="fl-grid">
             {
                 flowers.map(item => (
-                    <Col key={item.flowerId} xs={20} sm={12} md={8} lg={6} style={{ padding: '2rem' }}>
+                    <Col key={item.flowerId} id={"fl-item-" + item.flowerId.toString()} xs={20} sm={12} md={8} lg={6} style={{ padding: '2rem' }}>
                         <Link to={`/${item.flowerId}`}>
                             <Card
                                 hoverable
+                                className="fl-card"
                                 style={{ width: 240 }}
                                 cover={
                                     item.image_urls.length > 0 ? <img alt="flower" src={ `${SERVER_URL}/public/${item.image_urls[0]}.jpg`} /> : null
                                 }
                                 >
-                                <p>Stock: {item.stockLevel}</p>
+                                <p className="fl-card-stock">Stock: {item.stockLevel}</p>
                                 <p>Status: {item.status}</p>
                             </Card>
                         </Link>
